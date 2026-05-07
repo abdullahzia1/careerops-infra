@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "ecs_assume_role" {
   }
 }
 
-# ── ECS Task Execution Role ──────────────────────────────────────────────────
+# ── ECS Task Execution Role─────
 
 resource "aws_iam_role" "ecs_task_execution" {
   name               = "${var.app_name}-ecs-task-execution"
@@ -39,14 +39,14 @@ resource "aws_iam_role_policy" "ecs_task_execution_secrets" {
   })
 }
 
-# ── ECS Task Role (runtime permissions for the app) ──────────────────────────
+# ── ECS Task Role (runtime permissions for the app) ─
 
 resource "aws_iam_role" "ecs_task" {
   name               = "${var.app_name}-ecs-task"
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role.json
 }
 
-# ── GitHub Actions Deploy IAM User ───────────────────────────────────────────
+# ── GitHub Actions Deploy IAM User────────
 
 resource "aws_iam_user" "gha_deploy" {
   name = "${var.app_name}-gha-deploy"

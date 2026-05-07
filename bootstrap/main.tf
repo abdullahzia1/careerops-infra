@@ -1,4 +1,4 @@
-# ─────────────────────────────────────────────────────────────────────────────
+#
 # Bootstrap — run ONCE locally before any other `terraform apply`
 # Creates the S3 bucket and DynamoDB table used for remote state locking.
 #
@@ -6,7 +6,7 @@
 #   cd bootstrap
 #   terraform init
 #   terraform apply -var="aws_region=us-east-1"
-# ─────────────────────────────────────────────────────────────────────────────
+#
 
 terraform {
   required_providers {

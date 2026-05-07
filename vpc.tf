@@ -14,7 +14,7 @@ resource "aws_vpc" "main" {
   tags = { Name = "${var.app_name}-vpc" }
 }
 
-# ── Public subnets (ALB) ────────────────────────────────────────────────────
+# ── Public subnets (ALB)
 
 resource "aws_subnet" "public" {
   count                   = 2
@@ -26,7 +26,7 @@ resource "aws_subnet" "public" {
   tags = { Name = "${var.app_name}-public-${count.index + 1}" }
 }
 
-# ── Private subnets (ECS tasks) ─────────────────────────────────────────────
+# ── Private subnets (ECS tasks)
 
 resource "aws_subnet" "private" {
   count             = 2
@@ -37,7 +37,7 @@ resource "aws_subnet" "private" {
   tags = { Name = "${var.app_name}-private-${count.index + 1}" }
 }
 
-# ── Internet Gateway ─────────────────────────────────────────────────────────
+# ── Internet Gateway─────
 
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
@@ -45,7 +45,7 @@ resource "aws_internet_gateway" "main" {
   tags = { Name = "${var.app_name}-igw" }
 }
 
-# ── NAT Gateway (single, to reduce cost) ───────────────────────────────────
+# ── NAT Gateway (single, to reduce cost)
 
 resource "aws_eip" "nat" {
   domain     = "vpc"
@@ -62,7 +62,7 @@ resource "aws_nat_gateway" "main" {
   depends_on = [aws_internet_gateway.main]
 }
 
-# ── Route tables ─────────────────────────────────────────────────────────────
+# ── Route tables─────────
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id

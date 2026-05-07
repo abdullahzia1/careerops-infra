@@ -2,7 +2,7 @@ locals {
   s3_origin_id = "${var.app_name}-frontend-origin"
 }
 
-# ── S3 Bucket ────────────────────────────────────────────────────────────────
+# ── S3 Bucket
 
 resource "aws_s3_bucket" "frontend" {
   bucket = "${var.app_name}-frontend-${var.environment}"
@@ -26,7 +26,7 @@ resource "aws_s3_bucket_versioning" "frontend" {
   }
 }
 
-# ── CloudFront Origin Access Control ─────────────────────────────────────────
+# ── CloudFront Origin Access Control──────
 
 resource "aws_cloudfront_origin_access_control" "frontend" {
   name                              = "${var.app_name}-frontend-oac"
@@ -36,7 +36,7 @@ resource "aws_cloudfront_origin_access_control" "frontend" {
   signing_protocol                  = "sigv4"
 }
 
-# ── S3 Bucket Policy — allow CloudFront OAC only ─────────────────────────────
+# ── S3 Bucket Policy — allow CloudFront OAC only ────
 
 data "aws_iam_policy_document" "frontend_s3" {
   statement {
@@ -63,7 +63,7 @@ resource "aws_s3_bucket_policy" "frontend" {
   depends_on = [aws_s3_bucket_public_access_block.frontend]
 }
 
-# ── CloudFront Distribution ───────────────────────────────────────────────────
+# ── CloudFront Distribution──────
 
 resource "aws_cloudfront_distribution" "frontend" {
   enabled             = true

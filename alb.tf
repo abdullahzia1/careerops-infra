@@ -1,4 +1,4 @@
-# ── Security Groups ──────────────────────────────────────────────────────────
+# ── Security Groups──────
 
 resource "aws_security_group" "alb" {
   name        = "${var.app_name}-alb-sg"
@@ -51,7 +51,7 @@ resource "aws_security_group" "ecs" {
   tags = { Name = "${var.app_name}-ecs-sg" }
 }
 
-# ── Application Load Balancer ─────────────────────────────────────────────
+# ── Application Load Balancer
 
 resource "aws_lb" "main" {
   name               = "${var.app_name}-alb"

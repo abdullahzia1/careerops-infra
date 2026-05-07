@@ -47,7 +47,7 @@ resource "aws_ecs_task_definition" "backend" {
 
       environment = [
         { name = "PORT",            value = tostring(var.backend_port) },
-        { name = "FRONTEND_ORIGIN", value = "https://${aws_cloudfront_distribution.frontend.domain_name}" },
+        { name = "FRONTEND_ORIGIN", value = "https://${var.frontend_domain}" },
         { name = "NODE_ENV",        value = "production" }
       ]
 

@@ -48,3 +48,18 @@ output "gha_deploy_secret_access_key" {
   value       = aws_iam_access_key.gha_deploy.secret
   sensitive   = true
 }
+
+output "route53_nameservers" {
+  description = "Add these 4 NS records on Porkbun under host 'careerops' for enovisoft.com to delegate the subdomain to Route 53"
+  value       = aws_route53_zone.main.name_servers
+}
+
+output "frontend_url" {
+  description = "Frontend URL"
+  value       = "https://${var.frontend_domain}"
+}
+
+output "api_url" {
+  description = "Backend API URL"
+  value       = "https://${var.api_domain}"
+}

@@ -45,3 +45,15 @@ variable "desired_count" {
   type        = number
   default     = 1
 }
+
+variable "frontend_domain" {
+  description = "Custom domain for the frontend CloudFront distribution"
+  type        = string
+  default     = "app.careerops.enovisoft.com"
+}
+
+variable "api_domain" {
+  description = "Custom domain for the backend ALB"
+  type        = string
+  default     = "api.careerops.enovisoft.com"
+}
